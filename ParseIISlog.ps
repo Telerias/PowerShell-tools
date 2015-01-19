@@ -1,0 +1,22 @@
+# From http://blogs.technet.com/b/fun_with_powershell/archive/2013/10/22/parsing-log-files-using-windows-powershell.aspx
+# by  Naveen  Vasudevan 
+# In Powershell cmd  prompt, please navigate to the location where you have saved the IIS logs, and
+# run the below command : 
+
+Get-Content ".\*log" | ? { ($_ | Select-String "/ews")}  
+
+# The above command would give us all the EWS requests.
+
+To filter this to a particular user name, use the below command:
+
+Get-Content ".\*log" | ? { ($_ | Select-String "/ews") -and ($_ | Select-String "Useralias")}  
+
+# Some more options that will be more commonly required : 
+
+# For Outlook Web Access : Replace EWS with OWA 
+# For EAS : Replace EWS with Microsoft-server-activesync 
+# For ECP : Replace EWS with ECP
+
+# To find out the count of the EWS request we can go ahead and run the below command
+
+(Get-Content ".\*log" | ? { ($_ | Select-String "/ews") -and ($_ | Select-String "Useralias")}).count
