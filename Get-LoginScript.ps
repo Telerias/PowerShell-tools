@@ -1,0 +1,3 @@
+Import-Module -Name ActiveDirectory
+
+Get-ADUser -filter * -properties scriptpath, homedrive, homedirectory | ft Name, scriptpath, homedrive, homedirectory
