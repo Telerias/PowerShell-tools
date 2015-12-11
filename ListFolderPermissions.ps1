@@ -14,5 +14,5 @@ Exit-PSSession
 
 ####
 
-# third to try
+# third to try  (This one worked best for a non CSV file)
 Get-Acl .\Bogus | Format-List
